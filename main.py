@@ -21,7 +21,6 @@ def download_model():
 download_model()
 
 # Ensuite seulement, on importe tout le reste
-from app.utils.model_loader import load_bert_model
 from chat_oziria import repondre   # ← adapte si nom différent
 
 app = FastAPI()
