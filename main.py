@@ -7,6 +7,7 @@ from chat_oziria import repondre   # ← adapte si nom différent
 import os
 from app.utils.model_loader import load_bert_model
 import urllib.request
+from sentence_transformers import SentenceTransformer
 
 app = FastAPI()
 model = load_bert_model()
