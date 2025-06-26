@@ -6,7 +6,7 @@ from pydantic import BaseModel
 from chat_oziria import repondre   # ← adapte si nom différent
 import os
 from app.utils.model_loader import load_bert_model
-
+import urllib.request
 
 app = FastAPI()
 model = load_bert_model()
@@ -36,3 +36,13 @@ class PromptRequest(BaseModel):
 async def chat_endpoint(prompt: PromptRequest):
     response_text = repondre(prompt.prompt)
     return {"response": response_text}
+
+def download_model():
+    model_path = "models/bert-base-nli-mean-tokens/flax_model.msgpack"
+    if not os.path.exists(model_path):
+        os.makedirs(os.path.dirname(model_path), exist_ok=True)
+        print("Téléchargement du modèle...")
+        urllib.request.urlretrieve(
+            "https://huggingface.co/sentence-transformers/bert-base-nli-mean-tokens/resolve/main/flax_model.msgpack",
+            model_path
+        )
