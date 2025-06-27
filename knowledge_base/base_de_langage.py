@@ -2707,46 +2707,59 @@ base_langage = {
     "Qu'est-ce qu'une angine ?": [
         "L'angine est une inflammation des amygdales causée par un virus ou une bacterie. Elle provoque des maux de gorge, de la fievre et parfois des difficultes a avaler."
     ],
-    
+
     "Qu'est-ce qu'une sinusite ?": [
         "La sinusite est une inflammation des sinus, souvent liee a une infection virale. Elle cause des douleurs au visage, une congestion nasale et parfois de la fievre."
     ],
+
     "Qu'est-ce que l'asthme ?": [
         "L'asthme est une maladie respiratoire chronique caracterisee par une inflammation des bronches, provoquant toux, essoufflement et oppression thoracique."
     ],
+
     "Qu'est-ce qu'une otite ?": [
         "Une otite est une infection de l'oreille, surtout frequente chez les enfants. Elle peut toucher l'oreille externe, moyenne ou interne, et provoquer des douleurs et de la fievre."
     ],
+
     "Qu'est-ce que la bronchite ?": [
         "La bronchite est une inflammation des bronches due a une infection ou a une exposition a des irritants. Elle provoque toux, fatigue, et parfois fievre."
     ],
+
     "Qu'est-ce que la grippe ?": [
         "La grippe est une infection virale aigue tres contagieuse, causee par le virus influenza. Elle entraine fievre, fatigue, douleurs musculaires et toux seche."
     ],
+
     "Qu'est-ce que le diabete ?": [
         "Le diabete est une maladie chronique caracterisee par une hyperglycemie, due a un deficit de production ou d'action de l'insuline."
     ],
+
     "Qu'est-ce que l'hypertension arterielle ?": [
         "L'hypertension est une pression trop elevee dans les arteres, qui augmente le risque de maladies cardiovasculaires si elle n'est pas controlee."
     ],
+
     "Qu'est-ce qu'une cystite ?": [
         "La cystite est une inflammation de la vessie, souvent causee par une infection urinaire. Elle provoque des brulures en urinant et un besoin frequent d'uriner."
     ],
+
     "Qu'est-ce qu'une anemie ?": [
         "L'anemie est une baisse du taux d'hemoglobine dans le sang, souvent liee a un manque de fer, et provoque fatigue, essoufflement et paleur."
     ],
+
     "Qu'est-ce que l'eczema ?": [
         "L'eczema est une affection cutanee inflammatoire qui provoque des rougeurs, demangeaisons, et des lesions seches ou suintantes."
     ],
+
     "Qu'est-ce que la gastro-enterite ?": [
         "La gastro-enterite est une infection digestive virale ou bacterienne causant diarrhee, vomissements et douleurs abdominales."
     ],
+
     "Qu'est-ce que l'arthrose ?": [
         "L'arthrose est une degenerescence du cartilage des articulations, provoquant douleurs, raideurs et parfois un handicap fonctionnel."
     ],
+
     "Qu'est-ce qu'un infarctus du myocarde ?": [
         "C'est une necrose d'une partie du coeur causee par une obstruction des arteres coronaires. Il s'agit d'une urgence medicale vitale."
     ],
+    
     "Qu'est-ce que l'AVC (accident vasculaire cerebral) ?": [
         "Un AVC est une interruption soudaine de la circulation sanguine vers le cerveau. Il peut entrainer des sequelles graves voire la mort si non pris en charge rapidement."
     ],
