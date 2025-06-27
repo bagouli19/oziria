@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from chat_oziria import repondre
 import json
+import os
 
 app = FastAPI()
 
