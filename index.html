@@ -38,19 +38,35 @@
 
   <script>
     async function verifierCle() {
-      const cle = document.getElementById('cle').value;
-      const res = await fetch('/verifier-cle', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ cle })
-      });
+      const cle = document.getElementById('cle').value.trim();
 
-      const data = await res.json();
-      if (data.acces) {
-        localStorage.setItem('cle_acces', cle);
-        window.location.href = '/chat.html';
-      } else {
-        alert("❌ Clé invalide !");
+      if (!cle) {
+        alert("Merci d’entrer une clé.");
+        return;
+      }
+
+      try {
+        const res = await fetch('/verifier-cle', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ cle })
+        });
+
+        if (!res.ok) {
+          throw new Error(`Erreur serveur : ${res.status}`);
+        }
+
+        const data = await res.json();
+
+        if (data.acces) {
+          localStorage.setItem('cle_acces', cle);
+          window.location.href = '/chat.html';
+        } else {
+          alert("❌ Clé invalide !");
+        }
+      } catch (error) {
+        console.error("Erreur lors de la vérification :", error);
+        alert("🚨 Erreur de communication avec le serveur.");
       }
     }
   </script>

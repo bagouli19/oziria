@@ -1,15 +1,11 @@
-from fastapi import FastAPI
-from fastapi.responses import FileResponse
+from fastapi import FastAPI, Request, Form
+from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
-from chat_oziria import repondre
-import json
-import os
 
+Configuration FastAPI + CORS
 app = FastAPI()
 
-# CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -19,31 +15,18 @@ app.add_middleware(
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-@app.get("/")
-def read_index():
+# Page d'accueil
+@app.get("/", response_class=HTMLResponse)
+async def accueil():
     return FileResponse("index.html")
 
-class PromptRequest(BaseModel):
-    prompt: str
-
-@app.post("/chat")
-async def chat_endpoint(prompt: PromptRequest):
-    response_text = repondre(prompt.prompt)
-    return {"response": response_text}
-
-from fastapi import Request
-from pydantic import BaseModel
-
-class CleRequest(BaseModel):
-    cle: str
-
+# Vérification de la clé
 @app.post("/verifier-cle")
-async def verifier_cle(data: CleRequest):
-    with open("cles_acces.json", "r") as f:
-        cles_valides = json.load(f)
-    return {"acces": data.cle in cles_valides}
+async def verifier_cle(request: Request):
+    form = await request.form()
+    cle_utilisateur = form.get("cle")
 
-
-if not os.path.exists("cles_acces.json"):
-    with open("cles_acces.json", "w") as f:
-        json.dump(["cle_admin_par_defaut"], f)
+    cle_attendue = os.getenv("ACCESS_KEY")
+    if cle_utilisateur == cle_attendue:
+        return FileResponse("index.html")
+    return HTMLResponse("<h1>Clé invalide</h1>", status_code=403)
