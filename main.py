@@ -24,7 +24,6 @@ download_model()
 from chat_oziria import repondre   # ← adapte si nom différent
 
 app = FastAPI()
-model = load_bert_model()
 
 # CORS
 app.add_middleware(
