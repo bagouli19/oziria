@@ -43,12 +43,6 @@ async def verifier_cle(request: Request):
         return FileResponse("index.html")
     return HTMLResponse("<h1>Clé invalide</h1>", status_code=403) 
 
-@app.get("/", response_class=HTMLResponse)
-async def login_page(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
 
-@app.get("/chat", response_class=HTMLResponse)
-async def chat_page(request: Request):
-    return templates.TemplateResponse("chat.html", {"request": request})
 
 
