@@ -4651,18 +4651,7 @@ base_langage = {
     ],
     "le libre arbitre est il une illusion utile ?": [
         "oui. il donne l impression de controle, mais tout est biais, conditionnement, schema repete. l humain agit. il ne choisit presque jamais."
-    ],
-    "comment survivre sans electricite ?": (
-        "Pour survivre sans electricite :\n"
-        "- Utilise des lampes a huile, des bougies ou une lampe solaire.\n"
-        "- Stocke de l'eau potable et des conserves.\n"
-        "- Apprends a cuisiner au feu de bois ou avec un rechaud a gaz.\n"
-        "- Garde une radio a manivelle pour rester informe.\n"
-        "- Prevois une couverture thermique ou un chauffage alternatif si besoin."
-    ),
+    ]
     
     
-
-   
-
 }
