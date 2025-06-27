@@ -41,3 +41,8 @@ async def verifier_cle(data: CleRequest):
     with open("cles_acces.json", "r") as f:
         cles_valides = json.load(f)
     return {"acces": data.cle in cles_valides}
+
+
+if not os.path.exists("cles_acces.json"):
+    with open("cles_acces.json", "w") as f:
+        json.dump(["cle_admin_par_defaut"], f)
