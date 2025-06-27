@@ -1,57 +1,135 @@
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Oziria - Accès</title>
-  <link rel="icon" href="/static/oziria.png">
-  <style>
-    body {
-      background-color: #111;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding-top: 10%;
-    }
-    input, button {
-      padding: 10px;
-      font-size: 18px;
-      border: none;
-      border-radius: 8px;
-      margin-top: 10px;
-    }
-    input {
-      width: 300px;
-    }
-    button {
-      background-color: #3f51b5;
-      color: white;
-      cursor: pointer;
-    }
-  </style>
+ <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oziria Chat - Darknet AI</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', monospace;
+            background-color: #0f0f0f;
+            color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .header img {
+            width: 120px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px #00ffff88;
+        }
+
+        .chat-container {
+            width: 90%;
+            max-width: 800px;
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+            overflow-y: auto;
+            height: 55vh;
+            margin-top: 10px;
+            box-shadow: 0 0 10px #00ffff22;
+        }
+
+        .input-container {
+            margin-top: 10px;
+            width: 90%;
+            max-width: 800px;
+            display: flex;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px 0 0 8px;
+            font-size: 16px;
+            background-color: #2a2a2a;
+            color: #fff;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            background-color: #00ffff;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 0 8px 8px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #00cccc;
+        }
+    </style>
 </head>
 <body>
-  <h1>Bienvenue sur Oziria 👁</h1>
-  <p>Entre ta clé d’accès :</p>
-  <input type="text" id="cle" placeholder="ex: 1f984e9b-2097-42c4-8132-xxxx">
-  <br>
-  <button onclick="verifierCle()">Accéder</button>
+    <div class="header">
+        <img src="oziria.png" alt="Logo Oziria">
+        <h1>OZIRIA - Darknet Intelligence</h1>
+    </div>
 
-  <script>
-    async function verifierCle() {
-      const cle = document.getElementById('cle').value;
-      const res = await fetch('/verifier-cle', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ cle })
-      });
+    <div class="chat-container" id="chat">
+        <div><em>Bienvenue sur Oziria. Pose ta question ci-dessous.</em></div>
+    </div>
 
-      const data = await res.json();
-      if (data.acces) {
-        localStorage.setItem('cle_acces', cle);
-        window.location.href = '/chat.html';
-      } else {
-        alert("❌ Clé invalide !");
-      }
-    }
-  </script>
+    <div class="input-container">
+        <input type="text" id="userInput" placeholder="Tape ta question ici...">
+        <button onclick="sendMessage()">Envoyer</button>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const input = document.getElementById('userInput');
+            const chat = document.getElementById('chat');
+            const message = input.value.trim();
+            if (!message) return;
+
+            chat.innerHTML += `<div><strong>Tu :</strong> ${message}</div>`;
+            input.value = '';
+            chat.scrollTop = chat.scrollHeight;
+
+            fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ prompt: message })
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log('Réponse serveur :', data);
+                if (data && data.response) {
+                    chat.innerHTML += `<div><strong>Oziria :</strong> ${data.response}</div>`;
+                } else {
+                    chat.innerHTML += `<div><strong>Oziria :</strong> 🤖 Réponse vide ou invalide.</div>`;
+                }
+                chat.scrollTop = chat.scrollHeight;
+            })
+            .catch(err => {
+                chat.innerHTML += `<div><strong>Erreur :</strong> Impossible de contacter le serveur.</div>`;
+                console.error(err);
+            });
+        }
+
+        document.getElementById("userInput").addEventListener("keypress", function (e) {
+            if (e.key === "Enter") sendMessage();
+        });
+    </script>
 </body>
 </html>
