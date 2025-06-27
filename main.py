@@ -3,25 +3,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-import os
-import urllib.request
-
-
-# Téléchargement du modèle au démarrage si absent
-def download_model():
-    model_path = "models/bert-base-nli-mean-tokens/flax_model.msgpack"
-    if not os.path.exists(model_path):
-        os.makedirs(os.path.dirname(model_path), exist_ok=True)
-        print("Téléchargement du modèle...")
-        urllib.request.urlretrieve(
-            "https://huggingface.co/sentence-transformers/bert-base-nli-mean-tokens/resolve/main/flax_model.msgpack",
-            model_path
-        )
-
-download_model()
-
-# Ensuite seulement, on importe tout le reste
-from chat_oziria import repondre   # ← adapte si nom différent
+from chat_oziria import repondre
 
 app = FastAPI()
 
@@ -33,7 +15,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Fichiers statiques
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.get("/")
