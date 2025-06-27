@@ -58,6 +58,8 @@ def repondre(prompt: str) -> str:
 
 load_dotenv()  # charge les variables du fichier .env
 
+cle_admin = os.getenv("CLE_ACCES_ADMIN")
+
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 GOOGLE_SEARCH_ENGINE_ID = os.getenv("GOOGLE_SEARCH_ENGINE_ID")
 
