@@ -2703,9 +2703,11 @@ base_langage = {
     "Qu'est-ce que le Cubisme ?": [
         "Le Cubisme est un mouvement artistique du début du XXe siècle, fondé par Pablo Picasso et Georges Braque, qui représente les objets sous forme de formes géométriques."
     ],
+
     "Qu'est-ce qu'une angine ?": [
         "L'angine est une inflammation des amygdales causée par un virus ou une bacterie. Elle provoque des maux de gorge, de la fievre et parfois des difficultes a avaler."
     ],
+    
     "Qu'est-ce qu'une sinusite ?": [
         "La sinusite est une inflammation des sinus, souvent liee a une infection virale. Elle cause des douleurs au visage, une congestion nasale et parfois de la fievre."
     ],
