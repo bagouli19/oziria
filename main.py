@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import os
 import urllib.request
-from model_loader import load_bert_model
+
 
 # Téléchargement du modèle au démarrage si absent
 def download_model():
