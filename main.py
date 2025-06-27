@@ -3,13 +3,7 @@ from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
-from fastapi.templating import Jinja2Templates
-from fastapi.requests import Request
-from fastapi.responses import HTMLResponse
 import os
-
-templates = Jinja2Templates(directory="templates")
-
 
 # Charger les variables d'environnement depuis .env
 load_dotenv()
