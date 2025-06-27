@@ -28,3 +28,15 @@ class PromptRequest(BaseModel):
 async def chat_endpoint(prompt: PromptRequest):
     response_text = repondre(prompt.prompt)
     return {"response": response_text}
+
+from fastapi import Request
+from pydantic import BaseModel
+
+class CleRequest(BaseModel):
+    cle: str
+
+@app.post("/verifier-cle")
+async def verifier_cle(data: CleRequest):
+    with open("cles_acces.json", "r") as f:
+        cles_valides = json.load(f)
+    return {"acces": data.cle in cles_valides}
